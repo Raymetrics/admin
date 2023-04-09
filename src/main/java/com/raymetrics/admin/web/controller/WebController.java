@@ -14,5 +14,4 @@ public class WebController {
         System.out.println(">?>>>"+exampleInputEmail);
         return "index";
     }
-
 }

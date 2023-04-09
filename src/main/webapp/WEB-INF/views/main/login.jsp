@@ -41,15 +41,15 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                 </div>
-                                <form class="user">
+                                <form class="user" action="/auth" method="post">
                                     <div class="form-group">
-                                        <input type="email" class="form-control form-control-user"
-                                               id="exampleInputEmail" aria-describedby="emailHelp"
+                                        <input type="text" class="form-control form-control-user"
+                                               id="email" name="email"
                                                placeholder="Enter Email Address...">
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control form-control-user"
-                                               id="exampleInputPassword" placeholder="Password">
+                                               id="password" name="password" placeholder="Password">
                                     </div>
                                     <div class="form-group">
                                         <div class="custom-control custom-checkbox small">
@@ -58,7 +58,7 @@
                                                 Me</label>
                                         </div>
                                     </div>
-                                    <button type="submit" href="/" class="btn btn-primary btn-user btn-block">
+                                    <button type="submit" onclick="" class="btn btn-primary btn-user btn-block">
                                         Login
                                     </button>
                                     <hr>
@@ -89,14 +89,14 @@
 </div>
 
 <!-- Bootstrap core JavaScript-->
-<script src="/bootstrap/vendor/jquery/jquery.min.js"></script>
-<script src="/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/resources/static/bootstrap/vendor/jquery/jquery.min.js"></script>
+<script src="/resources/static/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->
-<script src="/bootstrap/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="/resources/static/bootstrap/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="/bootstrap/js/sb-admin-2.min.js"></script>
+<script src="/resources/static/bootstrap/js/sb-admin-2.min.js"></script>
 
 </body>
 
