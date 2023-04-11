@@ -20,9 +20,9 @@ public class MainController {
         return "index";
     }
 
-    @RequestMapping(value = "/user/login/result", method = RequestMethod.GET)
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
     public Object test(){
         System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-        return "/";
+        return "/main/blank";
     }
 }
