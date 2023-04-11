@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Raymetrics Admin</title>
 
     <!-- Custom fonts for this template-->
     <link href="/bootstrap/vendor/fontawesome-free/css/all.css" rel="stylesheet" type="text/css"/>
@@ -131,7 +131,14 @@
             <li class="nav-item">
                 <a class="nav-link" href="/bootstrap/tables.html">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
+                    <span>News</span></a>
+            </li>
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="/bootstrap/tables.html">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Inquiry Board</span></a>
             </li>
 
             <!-- Divider -->
