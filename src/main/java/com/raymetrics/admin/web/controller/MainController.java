@@ -14,7 +14,13 @@ public class MainController {
     }
 
 
-    @RequestMapping(value = "/auth", method = {RequestMethod.POST, RequestMethod.GET})
+
+    @RequestMapping(value = "/inquiryBoard", method = RequestMethod.GET)
+    public String inquiry(){
+        return "/main/inquiryBoard";
+    }
+
+  /*  @RequestMapping(value = "/auth", method = {RequestMethod.POST, RequestMethod.GET})
     public String auth(@RequestParam String email, @RequestParam String password){
         System.out.println("로그인됨");
         return "index";
@@ -24,5 +30,5 @@ public class MainController {
     public Object test(){
         System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
         return "/main/blank";
-    }
+    }*/
 }
