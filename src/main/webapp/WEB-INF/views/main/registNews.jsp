@@ -5,6 +5,9 @@
 
 
 <%@include file="../includes/header.jsp"%>
+<!-- 에디터 플러그인 -->
+
+<script type="text/javascript" src="/resources/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
 
 <div class="row" style="margin-bottom:20px; margin-left:1px;">
     <div class="col-lg-12">
@@ -56,5 +59,14 @@
         </div>
     </div>
 </div>
+<form action="insertStudentInfoForm" method="post">
+    <div id="smarteditor">
+        <textarea name="editorTxt" id="editorTxt"
+                  rows="20" cols="10"
+                  placeholder="내용을 입력해주세요"
+                  style="width: 500px"></textarea>
+    </div>
+    <input type="button" />
+</form>
 
 <%@include file="../includes/footer.jsp"%>
