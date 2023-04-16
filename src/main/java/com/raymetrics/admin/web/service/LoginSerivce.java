@@ -20,11 +20,12 @@ public class LoginSerivce implements UserDetailsService {
 //    private final User user;
 //    public LoginSerivce(User user){this.user = user;}
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException{
+
         System.out.println("service들어옴");
         Collection<GrantedAuthority> collect = new ArrayList<>();
         collect.add(new SimpleGrantedAuthority("ADMIN"));
         collect.add(new SimpleGrantedAuthority("USER"));
-        User user = new User("1234", BCrypt.hashpw("1234", BCrypt.gensalt()) , collect);
+        User user = new User("admin", BCrypt.hashpw("admin", BCrypt.gensalt()) , collect);
         return user;
     }
 

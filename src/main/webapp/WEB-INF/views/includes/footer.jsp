@@ -2,7 +2,7 @@
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2021</span>
+            <span>Copyright &copy; Raymetrics 2023</span>
         </div>
     </div>
 </footer>
@@ -56,6 +56,10 @@
 <script src="/bootstrap/js/demo/chart-area-demo.js"></script>
 <script src="/bootstrap/js/demo/chart-pie-demo.js"></script>
 
+
 </body>
 
 </html>
+<script type="text/javascript" src="/resources/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+
+</script>

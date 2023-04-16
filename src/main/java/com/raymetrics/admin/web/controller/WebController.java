@@ -8,10 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class WebController {
 
-    @RequestMapping(value = "/", method = {RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping(value = "/", method = {RequestMethod.GET})
     public String main(@RequestParam(required = false) String exampleInputEmail){
-        System.out.println(">?>>>"+exampleInputEmail);
-        return "index";
+        return "/main/news/news";
     }
-
 }

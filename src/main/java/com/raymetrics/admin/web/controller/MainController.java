@@ -13,12 +13,21 @@ public class MainController {
         return "/main/login";
     }
 
-
-
-    @RequestMapping(value = "/inquiryBoard", method = RequestMethod.GET)
-    public String inquiry(){
-        return "/main/inquiryBoard";
+    @RequestMapping(value = "/memberInfo", method = RequestMethod.GET)
+    public String memberInfo(){
+        return "/main/member/memberInfo";
     }
+
+    @RequestMapping(value = "/memberEdit", method = RequestMethod.GET)
+    public String memberEdit(){
+        return "/main/member/memberEdit";
+    }
+
+
+//    @RequestMapping(value = "/inquiryBoard", method = RequestMethod.GET)
+//    public String inquiry(){
+//        return "/main/inquiryBoard";
+//    }
 
   /*  @RequestMapping(value = "/auth", method = {RequestMethod.POST, RequestMethod.GET})
     public String auth(@RequestParam String email, @RequestParam String password){

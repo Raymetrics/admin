@@ -34,9 +34,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
         auth.userDetailsService(loginSerivce).passwordEncoder(encryptPassword());
     }
-
     protected void configure(HttpSecurity http) throws Exception{
-        http.csrf().disable()
+        http.headers().frameOptions().sameOrigin()
+                        .and()
+        .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/login/**","/css/**", "/js/**", "/img/**", "/lib/**", "/resources/**", "/**/*.js", "/**/*.css").permitAll()
                 .anyRequest()
