@@ -2,6 +2,7 @@
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 
 <%@include file="../../includes/header.jsp"%>
@@ -21,7 +22,7 @@
     <div id="contAreaBox">
         <div class="panel">
             <div class="panel-body">
-                <form role="form" action="/board/create_action" method="post">
+                <form:form id="form" action="/inquiry/save" method="post">
                     <div class="table-responsive" style="text-align:center;">
                         <table id="datatable-scroller"
                                class="table table-bordered tbl_Form">
@@ -34,29 +35,32 @@
                             <tr>
                                 <th class="active" >작성자</th>
                                 <td class="form-inline"><input type="text" id="board_writer"
-                                                               name="board_writer" class="form-control" style="width: 200px" value="관리자" />
+                                                               name="writer" class="form-control" style="width: 200px" value="관리자" />
                                 </td>
                             </tr>
                             <tr>
                                 <th class="active">제목</th>
-                                <td class="form-inline"><input type="text" id="board_title"
-                                                               name="board_title" class="form-control" style="width: 840px" />
+                                <td class="form-inline"><input type="text" id="title"
+                                                               name="title" class="form-control" style="width: 840px" />
                                 </td>
                             </tr>
                             <tr>
                                 <th class="active" >내용</th>
-                                <td class="form-inline"><textarea
+                                <td class="form-inline">
+                                    <textarea
                                         id="smartEditor" name="smartEditor" cols="100" rows="10"
-                                        class="form-control"></textarea></td>
+                                        class="form-control"></textarea>
+                                </td>
                             </tr>
                             </tbody>
                         </table>
+                        <input type="hidden" id="regAdminNo" name="regAdminNo" value="1">
                     </div>
                     <div style="margin-right:50px; float: right">
-                        <button type="submit" class="btn btn-primary">등록</button>
+                        <button type="button" class="btn btn-primary" onclick="submitContents(this);" >등록</button>
                         <a href="/board/list" class="btn btn-danger">취소</a>
                     </div>
-                </form>
+                </form:form>
             </div>
         </div>
     </div>

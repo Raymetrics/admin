@@ -20,8 +20,7 @@ public class LoginSerivce implements UserDetailsService {
 //    private final User user;
 //    public LoginSerivce(User user){this.user = user;}
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException{
-
-        System.out.println("service들어옴");
+        System.out.println(">>>>>>>>>>>>>>>>"+ email);
         Collection<GrantedAuthority> collect = new ArrayList<>();
         collect.add(new SimpleGrantedAuthority("ADMIN"));
         collect.add(new SimpleGrantedAuthority("USER"));

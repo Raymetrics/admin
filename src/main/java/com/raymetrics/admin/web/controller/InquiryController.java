@@ -1,16 +1,27 @@
 package com.raymetrics.admin.web.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.raymetrics.admin.web.model.InquiryReqDTO;
+import com.raymetrics.admin.web.model.NewsReqDTO;
+import com.raymetrics.admin.web.service.InquiryService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 
 @Controller
+@RequiredArgsConstructor
 public class InquiryController {
-
+    private final InquiryService inquiryService;
     @RequestMapping(value = "/inquiryBoard", method = RequestMethod.GET)
-    public String inquiry(){
+    public String inquiry(@RequestParam HashMap<String, Object> paramMap,
+                          ModelMap model,
+                          HttpServletResponse response) throws Exception{
+
+        model.addAttribute("INQUIRY_LIST", inquiryService.getList());
         return "/main/inquiry/inquiryBoard";
     }
 
@@ -19,6 +30,15 @@ public class InquiryController {
     public String registInquiry(){
         return "/main/inquiry/registInquiry";
     }
+    @PostMapping(value = "/inquiry/save")
+    public String regist(@RequestParam HashMap<String, Object> paramMap,
+                         @ModelAttribute InquiryReqDTO inquiryReqDTO){
+        System.out.println(">>>>>>>");
+        int inquiry_no = inquiryService.regist(inquiryReqDTO, paramMap, Integer.parseInt(paramMap.get("regAdminNo").toString()));
+        System.out.println("성공");
+        return "redirect:/inquiryDetail/"+inquiry_no;
+    }
+
 
     @RequestMapping(value = "/inquiryDetail/{id}", method = RequestMethod.GET)
     public String newsDetail(@PathVariable("id") Long id, ModelMap model) throws Exception{
@@ -55,4 +75,6 @@ public class InquiryController {
     public String deleteInquiry(){
         return "/main/inquiryBoard";
     }
+
+
 }

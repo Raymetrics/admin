@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@include file="../../includes/header.jsp"%>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Inquiry Board 관리 </h1>
                     <!-- DataTales Example -->
@@ -16,6 +17,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
+
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
@@ -27,6 +29,25 @@
                                     </thead>
 
                                     <tbody>
+
+<c:forEach var="inquiry" items="${INQUIRY_LIST}" varStatus="vs">
+    <tr onclick="location.href='/inquiryDetail/${inquiry.inquiryNo}'" style="cursor: pointer">
+        <th scope="row">${inquiry.inquiryNo}</th>
+        <td>${inquiry.title}</td>
+        <td>홍길동</td>
+        <td>${inquiry.regDt}</td>
+    </tr>
+    <c:if test="${not empty inquiry.replies}">
+        <c:forEach var="replies" items="${inquiry.replies}" >
+            <tr>
+                <td>-</td>
+                <td><i class="fa-solid fa-arrow-turn-down-right"></i> Re : ${replies.contents}</td>
+                <td>관리자</td>
+                <td>2023/03/01</td>
+            </tr>
+        </c:forEach>
+    </c:if>
+</c:forEach>
                                         <tr onclick="location.href='/inquiryDetail/5'" style="cursor: pointer">
                                             <th scope="row">5</th>
                                             <td>비공개</td>
@@ -89,3 +110,8 @@
 
             <!-- Footer -->
 <%@include file="../../includes/footer.jsp"%>
+
+<script type="text/javascript">
+    var inquiryData = ${INQUIRY_LIST};
+    console.log(inquiryData);
+</script>

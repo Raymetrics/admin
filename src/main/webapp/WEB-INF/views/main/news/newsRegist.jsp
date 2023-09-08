@@ -53,7 +53,7 @@
                         </table>
                     </div>
                     <div style="margin-right:100px; float: right">
-                        <button type="submit" class="btn btn-primary">등록</button>
+                        <button type="button" class="btn btn-primary" onclick="submitPost()">등록</button>
                         <a href="/board/list" class="btn btn-danger">취소</a>
                     </div>
                 </form>
@@ -125,6 +125,19 @@
         var sDefaultFont = '궁서';
         var nFontSize = 24;
         oEditors.getById["smartEditor"].setDefaultFont(sDefaultFont, nFontSize);
+    }
+
+    function submitPost(){
+        oEditors.getById['editorTxt'].exec("UPDATE_CONTENTS_FIELD", [])
+        let content = document.getElementById('editorTxt').value
+
+        if(content == ''){
+            alert("내용을 입력해주세요")
+            oEditors.getById['editorTxt'].exec("FOCUS")
+            return;
+        } else {
+            console.log(content)
+        }
     }
 </script>
 

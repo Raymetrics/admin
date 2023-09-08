@@ -335,8 +335,9 @@
     		sUploadURL;
     	
     	//sUploadURL= 'file_uploader_html5.php'; 	//upload URL
-		sUploadURL = 'http://localhost:8080/smarteditorMultiImageUpload';
-    	
+		// sUploadURL = 'http://localhost:8080/smarteditorMultiImageUpload';
+		sUploadURL = 'http://localhost:7070/smarteditorMultiImageUpload';
+
     	//파일을 하나씩 보내고, 결과를 받음.
     	for(var j=0, k=0; j < nImageInfoCnt; j++) {
     		tempFile = htImageInfo['img'+j];
@@ -371,6 +372,7 @@
 			timeout : 3,
 			onerror :  jindo.$Fn(onAjaxError, this).bind()
 		});
+		console.log("여기는?")
 		oAjax.header("contentType","multipart/form-data");
 		oAjax.header("file-name",encodeURIComponent(tempFile.name));
 		oAjax.header("file-size",tempFile.size);
@@ -480,7 +482,8 @@
  	 */
  	function callFileUploader (){
  		oFileUploader = new jindo.FileUploader(jindo.$("uploadInputBox"),{
- 			sUrl  : 'http://localhost:8080/smarteditorMultiImageUpload',	//샘플 URL입니다.
+ 			// sUrl  : 'http://localhost:8080/smarteditorMultiImageUpload',	//샘플 URL입니다.
+ 			sUrl  : 'http://localhost:7070/smarteditorMultiImageUpload',	//샘플 URL입니다.
  	        sCallback : location.href.replace(/\/[^\/]*$/, '') + '/callback.html',	//업로드 이후에 iframe이 redirect될 콜백페이지의 주소
  	    	sFiletype : "*.jpg;*.png;*.bmp;*.gif",						//허용할 파일의 형식. ex) "*", "*.*", "*.jpg", 구분자(;)	
  	    	sMsgNotAllowedExt : 'JPG, GIF, PNG, BMP 확장자만 가능합니다',	//허용할 파일의 형식이 아닌경우에 띄워주는 경고창의 문구

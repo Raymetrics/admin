@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class MainController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(){
-        System.out.println(">?>>>");
         return "/main/login";
     }
 
