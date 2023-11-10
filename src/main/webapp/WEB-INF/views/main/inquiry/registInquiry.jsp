@@ -39,6 +39,26 @@
                                 </td>
                             </tr>
                             <tr>
+                                <th class="active">공개여부</th>
+                                <td class="form-inline">
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="publicRadio" name="showYn" value="true" class="custom-control-input" checked>
+                                        <label class="custom-control-label" for="publicRadio">공개</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="privateRadio" name="showYn" value="false" class="custom-control-input">
+                                        <label class="custom-control-label" for="privateRadio">비공개</label>
+                                    </div>
+                                    <span class="text-gray-500 text-xs ml-4">* 비공개 글로 게시가 됩니다.</span>
+                                </td>
+                            </tr>
+                            <tr id="passwordRow" style="display: none;">
+                                <th class="active">비밀번호</th>
+                                <td class="form-inline">
+                                    <input type="password" id="pw" name="pw" class="form-control" style="width: 200px" placeholder="비밀번호를 입력하세요" />
+                                </td>
+                            </tr>
+                            <tr>
                                 <th class="active">제목</th>
                                 <td class="form-inline"><input type="text" id="title"
                                                                name="title" class="form-control" style="width: 840px" />
@@ -130,6 +150,16 @@
         var nFontSize = 24;
         oEditors.getById["smartEditor"].setDefaultFont(sDefaultFont, nFontSize);
     }
+
+
+    $('input[name="showYn"]').change(function() {
+        if ($(this).val() === 'false') {
+            $('#passwordRow').show(); // 비공개 선택 시 비밀번호 입력란 표시
+        } else {
+            $('#passwordRow').hide(); // 공개 선택 시 비밀번호 입력란 숨김
+        }
+    });
+
 </script>
 
 <%@include file="../../includes/footer.jsp"%>

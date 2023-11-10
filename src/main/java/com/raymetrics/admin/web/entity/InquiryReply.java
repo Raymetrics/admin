@@ -8,6 +8,8 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.util.HashMap;
+import java.util.Optional;
 
 @Entity
 @Getter
@@ -30,6 +32,12 @@ public class InquiryReply extends AuditingAt {
     @Transient
     private String writer;
 
+    public InquiryReply(HashMap<String, Object> param, Inquiry inquiry){
+//        this.inquiryNo = Integer.parseInt((String) param.get("inquiryNo"));
+        this.contents = String.valueOf(param.get("contents"));
+        this.regAdminNo = Integer.parseInt(param.get("regAdminNo").toString());
+        this.inquiry = inquiry;
+    }
     public void setWriter(String writer){
         this.writer = writer;
     }

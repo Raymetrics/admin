@@ -24,6 +24,8 @@ public class Inquiry extends AuditingAt {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int inquiryNo;
     private String title;
+    private String name;
+    private String pw;
     private String contents;
     private Boolean showYn;
     private Integer regAdminNo;
@@ -31,13 +33,16 @@ public class Inquiry extends AuditingAt {
     @OneToMany(mappedBy = "inquiry", fetch = FetchType.LAZY)
     private List<InquiryReply> replies = new ArrayList<>();
 
-    public Inquiry(HashMap<String, Object> param, int id){
+    public Inquiry(HashMap<String, Object> param){
+        this.name = String.valueOf(param.get("writer"));
         this.title = String.valueOf(param.get("title"));
         this.contents = String.valueOf(param.get("smartEditor"));
         this.showYn =  Optional.ofNullable(param.get("showYn"))
                         .map(Object::toString)
                         .map(Boolean::valueOf)
                         .orElse(false);
-        this.regAdminNo = id;
+        if (!this.showYn) {
+            this.pw = String.valueOf(param.get("pw"));
+        }
     }
 }

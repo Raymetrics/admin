@@ -10,4 +10,7 @@ import java.util.List;
 @Repository
 //public interface InquiryRepository extends GenericRepository<Inquiry>
 public interface InquiryReplyRepository extends JpaRepository<InquiryReply, Integer> {
+    InquiryReply findFirstByReplyNoAndInquiry_InquiryNo(int replyNo, int inquiryNo);
+    List<InquiryReply> findAllByInquiry_InquiryNo(int inquiryNo);
+    void delete(InquiryReply inquiryReply);
 }
