@@ -10,7 +10,7 @@ public class MainController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(){
         System.out.println(">>>>>>>>>>>>>>>>>>>로그인 들어옴");
-        return "/main/login";
+        return "main/login";
     }
 
     @RequestMapping(value = "/memberInfo", method = RequestMethod.GET)
