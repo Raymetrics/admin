@@ -85,7 +85,6 @@ public class InquiryController {
             model.put("title", inquiryResDTO.getTitle());
             model.put("content", inquiryResDTO.getContents());
             model.put("writer", inquiryResDTO.getWriter());
-            model.put("regAdminNo", inquiryResDTO.getRegAdminNo());//로그인정보 가져와야함
             model.put("replyList", inquiryResDTO.getReplies());
         }
         return "/main/inquiry/inquiryDetail";

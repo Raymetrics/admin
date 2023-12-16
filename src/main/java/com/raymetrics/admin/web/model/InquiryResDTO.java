@@ -17,8 +17,10 @@ public class InquiryResDTO {
     private String title;
     private String contents;
     private String writer;
-    private int regAdminNo;
-    private Boolean showYn;
+    private String email;
+    private String name;
+    private String phone;
+    private String company;
     private Timestamp regDt;
     private List<InquiryReply> replies;
 
@@ -29,8 +31,10 @@ public class InquiryResDTO {
                 inquiry.getTitle(),
                 inquiry.getContents(),
                 writer,
-                Integer.parseInt("1"),
-                inquiry.getShowYn(),
+                inquiry.getEmail(),
+                inquiry.getName(),
+                inquiry.getPhone(),
+                inquiry.getCompany(),
                 inquiry.getRegDt(),
                 inquiry.getReplies()
         );

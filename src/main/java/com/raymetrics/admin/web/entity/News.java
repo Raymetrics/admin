@@ -18,28 +18,20 @@ import java.util.Optional;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicInsert
 @DynamicUpdate
-@Table(name = "INQUIRY")
-public class Inquiry extends AuditingAt {
+@Table(name = "news")
+public class News extends AuditingAt {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int inquiryNo;
+    private int newsNo;
     private String title;
-    private String email;
-    private String name;
-    private String phone;
-    private String company;
-    private String pw;
     private String contents;
-    @OneToMany(mappedBy = "inquiry", fetch = FetchType.LAZY)
-    private List<InquiryReply> replies = new ArrayList<>();
+    private Boolean delYn;
+    private Integer regAdminNo;
+    private Integer modAdminNo;
 
-    public Inquiry(HashMap<String, Object> param){
+    public News(HashMap<String, Object> param){
         this.title = String.valueOf(param.get("title"));
-        this.email = String.valueOf(param.get("email"));
-        this.name = String.valueOf(param.get("writer"));
-        this.phone = String.valueOf(param.get("email"));
-        this.company = String.valueOf(param.get("company"));
-        this.pw = String.valueOf(param.get("pw"));
         this.contents = String.valueOf(param.get("smartEditor"));
+
     }
 }
