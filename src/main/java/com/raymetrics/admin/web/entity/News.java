@@ -8,6 +8,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.HashMap;
+import java.util.Map;
 
 @Entity
 @Getter
@@ -35,6 +36,13 @@ public class News extends AuditingAt {
 
     public News setContents(String contents){
         this.contents = contents;
+        return this;
+    }
+
+    public News setModInfo(Map<String,Object> param){
+        this.title = String.valueOf(param.get("title"));
+        this.regAdminNo = String.valueOf(param.get("regAdminNo"));
+        this.contents = String.valueOf(param.get("smartEditor"));
         return this;
     }
 

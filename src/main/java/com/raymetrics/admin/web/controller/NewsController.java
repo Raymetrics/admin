@@ -26,7 +26,7 @@ public class NewsController {
     @RequestMapping(value= "/news/list", method = RequestMethod.GET)
     public String news(@RequestParam Map<String,Object> param, Model model) {
 
-        Page<NewsResDTO> newsList = newsService.getList(param);
+        Page<NewsResDTO> newsList = newsService.getList(param,2);
 
         int pageBlock = 10;
         int page = newsList.getNumber()+1;
@@ -56,7 +56,7 @@ public class NewsController {
      * @return
      */
     @RequestMapping(value= "/news/detail/{newsNo}", method = RequestMethod.GET)
-    public String inquiry(@PathVariable("newsNo") int newsNo, Model model, @RequestParam Map<String,Object> param) {
+    public String inquiry(@PathVariable("newsNo") int newsNo, Model model) {
 
         NewsResDTO news = newsService.getOne(newsNo);
         model.addAttribute("NEWS",news);
@@ -69,69 +69,34 @@ public class NewsController {
         return "/main/news/newsRegist";
     }
 
+    /**
+     * 뉴스 저장
+     * @param paramMap
+     * @param attributes
+     * @return
+     * @throws IOException
+     */
     @PostMapping("/news")
-    public String saveNews(@RequestParam HashMap<String, Object> paramMap, RedirectAttributes attributes) throws IOException {
+    public String saveNews(@RequestParam HashMap<String, Object> paramMap) throws IOException {
         News news = newsService.regist(paramMap);
         fileUploadService.uploadImgToCloud(news);
         return "redirect:/news/list";
     }
 
 
-//    @RequestMapping(value = "/newsDetail/{id}", method = RequestMethod.GET)
-//    public String newsDetail(@PathVariable("id") Long id, ModelMap model) throws Exception{
-//        String title = "";
-//        String content = "";
-//        String date = "";
-//        if (id == 7) {
-//            title = "쿼리연구소 수출";
-//        }else if(id == 6){
-//            title = "서울대학교병원 MOU";
-//        }else if(id == 5){
-//            title = "레이메트릭스 국내 섬광체 최초 국산화";
-//        }else if(id == 4){
-//            title = "보조선량계 신제품 출시";
-//        }else if(id == 3){
-//            title = "캐리마와 MOU";
-//        }else if(id == 2){
-//            title = "FTA 체결";
-//        }else if(id == 1){
-//            title = "레이메트릭스 첫 수출";
-//        }
-//        content = title + " 본문 내용";
-//
-//        model.put("id", id);
-//        model.put("title", title);
-//        model.put("content", content);
-//
-//        return "/main/news/newsDetail";
-//    }
-
     @RequestMapping(value = "/news/edit/{id}", method = RequestMethod.GET)
-    public String editNews(@PathVariable("id") Long id, ModelMap model){
-        String title = "";
-        String content = "";
-        String date = "";
-        if (id == 7) {
-            title = "쿼리연구소 수출";
-        }else if(id == 6){
-            title = "서울대학교병원 MOU";
-        }else if(id == 5){
-            title = "레이메트릭스 국내 섬광체 최초 국산화";
-        }else if(id == 4){
-            title = "보조선량계 신제품 출시";
-        }else if(id == 3){
-            title = "캐리마와 MOU";
-        }else if(id == 2){
-            title = "FTA 체결";
-        }else if(id == 1){
-            title = "레이메트릭스 첫 수출";
-        }
-        content = title + " 본문 내용";
+    public String editNews(@PathVariable("id") int newsNo, Model model) {
 
-        model.put("id", id);
-        model.put("title", title);
-        model.put("content", content);
+        NewsResDTO news = newsService.getOne(newsNo);
+        model.addAttribute("NEWS",news);
 
         return "/main/news/newsEdit";
+    }
+
+    @PostMapping(value = "/news/edit")
+    public String editNewsSave(@RequestParam HashMap<String, Object> paramMap) throws IOException {
+        News news = newsService.edit(paramMap);
+        fileUploadService.uploadImgToCloud(news);
+        return "redirect:/news/list";
     }
 }

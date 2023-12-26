@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 <%@include file="../../includes/header.jsp"%>
@@ -21,7 +21,7 @@
     <div id="contAreaBox">
         <div class="panel">
             <div class="panel-body">
-                <form role="form" action="/news/regist" method="post">
+                <form id="form" action="/news/edit" method="post">
                     <div class="table-responsive" style="text-align:center;">
                         <table id="datatable-scroller"
                                class="table table-bordered tbl_Form">
@@ -33,29 +33,34 @@
                             <tbody>
                             <tr>
                                 <th class="active" >No</th>
-                                <td class="form-inline">${id}
+                                <td class="form-inline"><input type="text" id="newsNo"
+                                                               name="newsNo" class="form-control" style="width: 200px" value="${NEWS.newsNo}" readonly/>
                                 </td>
                             </tr>
                             <tr>
                                 <th class="active" >작성자</th>
-                                <td class="form-inline"> 관리자
+                                <td class="form-inline"><input type="text" id="regAdminNo"
+                                                               name="regAdminNo" class="form-control" style="width: 200px" value="${NEWS.regAdminNo}" />
                                 </td>
                             </tr>
                             <tr>
                                 <th class="active">제목</th>
-                                <td class="form-inline"><input type="text" id="board_title"
-                                                               name="board_title" class="form-control" value="${title}" style="width: 840px" />
+                                <td class="form-inline">
+                                    <input type="text" id="title" name="title" class="form-control" value="${NEWS.title}" style="width: 840px" />
                                 </td>
                             </tr>
                             <tr>
                                 <th class="active" >내용</th>
-                                <td class="form-inline"><textarea
-                                        id="smartEditor" name="smartEditor" cols="100" rows="10"
-                                        class="form-control">${content}</textarea></td>
+                                <td class="form-inline">
+                                    <textarea
+                                            id="smartEditor" name="smartEditor" cols="100" rows="20"
+                                            class="form-control">${NEWS.contents}</textarea>
+
+                                </td>
                             </tr>
                             </tbody>
                         </table>
-                        <a href="/news/regist" class="btn btn-primary btn-icon-split">
+                        <a class="btn btn-primary btn-icon-split" onclick="submitContents(this);">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-save"></i>
                                         </span>
@@ -118,13 +123,49 @@
     }
 
     function submitContents(elClickedObj) {
-        oEditors.getById["smartEditor"].exec("UPDATE_CONTENTS_FIELD", []);	// 에디터의 내용이 textarea에 적용됩니다.
+        // SmartEditor2의 내용을 textarea에 적용
+        oEditors.getById["smartEditor"].exec("UPDATE_CONTENTS_FIELD", []);
 
-        // 에디터의 내용에 대한 값 검증은 이곳에서 document.getElementById("smartEditor").value를 이용해서 처리하면 됩니다.
+        // textarea에 적용된 내용을 확인
+        var editorContent = document.getElementById("smartEditor").value;
 
-        try {
-            elClickedObj.form.submit();
-        } catch(e) {}
+        //유효성 검사
+        if(validateForm()){
+            try {
+                // 폼을 직접 찾아서 제출
+                var form = document.getElementById("form");
+                form.submit();
+            } catch(e) {
+                console.error("Error submitting form:", e);
+            }
+        }
+    }
+
+    function validateForm() {
+        var regAdminNo = document.getElementById('regAdminNo').value;
+        var title = document.getElementById('title').value;
+        var content = document.getElementById('smartEditor').value;
+
+
+        // 이름과 제목은 비어있지 않아야 합니다.
+        if (regAdminNo.trim() === '') {
+            alert('작성자를 입력하세요.');
+            regAdminNo.focus();
+            return false;
+        }
+
+        if (title.trim() === '') {
+            alert('제목을 입력하세요.');
+            title.focus();
+            return false;
+        }
+        if (content.trim() === '') {
+            alert('내용을 입력하세요.');
+            content.focus();
+            return false;
+        }
+
+        return true;
     }
 
     function setDefaultFont() {

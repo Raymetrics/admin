@@ -126,7 +126,7 @@
                                         <li><a class="" href="<c:url value="?page=0" />">«</a></li>
                                         <c:forEach var="i" begin="${START_PAGE-1}" end="${END_PAGE - 1}">
                                             <c:choose>
-                                                <c:when test="${INQUIRY_LIST.number eq i}">
+                                                <c:when test="${NEWS_LIST.number eq i}">
                                                     <li><a href="<c:url value="?page=1" />" class="active">${i + 1}</a></li>
                                                 </c:when>
                                                 <c:otherwise>
@@ -134,7 +134,7 @@
                                                 </c:otherwise>
                                             </c:choose>
                                         </c:forEach>
-                                        <li><a href="<c:url value="?page=${INQUIRY_LIST.totalPages-1}" />">»</a></li>
+                                        <li><a href="<c:url value="?page=${NEWS_LIST.totalPages-1}" />">»</a></li>
                                     </ul>
                                 </div>
 
