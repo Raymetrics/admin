@@ -8,6 +8,8 @@ import com.raymetrics.admin.web.model.InquiryResDTO;
 import com.raymetrics.admin.web.repository.InquiryReplyRepository;
 import com.raymetrics.admin.web.repository.InquiryRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,19 +38,18 @@ public class InquiryService {
 
 
     @Transactional(readOnly = true)
-    public List<Inquiry> getList(){
+    public Page<InquiryResDTO> getList(Map<String,Object> param, int pageSize) {
         List<InquiryResDTO> result = new ArrayList<>();
 
-        List<Inquiry> inquiryList = inquiryRepository.findAllByOrderByInquiryNoDesc();
-        inquiryList.forEach(inquiry -> {
-            if(inquiry.getReplies()!=null){
-                inquiry.getReplies().forEach(
-                        inquiryReply -> inquiryReply.setWriter("reply글쓴이")
-                );
-            }
-            result.add(InquiryResDTO.of(inquiry));
-        });
-        return inquiryList;
+        int page = Optional.ofNullable(param.get("page"))
+                .map(Object::toString)
+                .map(Integer::valueOf)
+                .orElse(0);
+        int size = pageSize;
+        PageRequest pageable = PageRequest.of(page, size);
+        Page<Inquiry> inquiryPage = inquiryRepository.findAllByOrderByInquiryNoDesc(pageable);
+
+        return inquiryPage.map(InquiryResDTO::of);
     }
 
     @Transactional(readOnly = true)

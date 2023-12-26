@@ -4,8 +4,6 @@
 
 <%@include file="../../includes/header.jsp"%>
 <style>
-
-
     #pagination li {
         display: inline
     }

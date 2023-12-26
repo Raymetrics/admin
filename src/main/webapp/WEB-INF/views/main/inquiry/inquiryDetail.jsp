@@ -14,8 +14,8 @@
     <div class="card shadow mb-4">
 
         <div class="card-header py-3 d-flex justify-content-between align-items-center">
-            <h6 class="m-0 font-weight-bold text-primary">No : ${inquiryNo}</h6>
-            <a href="javascript:void(0);" onclick="deleteInquiry(${inquiryNo})" class="btn btn-danger">게시글 삭제</a>
+            <h6 class="m-0 font-weight-bold text-primary">No : ${INQUIRY.inquiryNo}</h6>
+            <a href="javascript:void(0);" onclick="deleteInquiry(${INQUIRY.inquiryNo})" class="btn btn-danger">게시글 삭제</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -26,22 +26,39 @@
                         <td>비공개 <span class="text-gray-500 text-xs ml-4">* 비공개 글로 게시가 됩니다.</span></td>
                     </tr>
                     <tr>
-                        <th class="active">작성자</th>
-                        <td>${writer}</td>
+                        <th class="active" >작성자 이름</th>
+                        <td class="form-inline">${INQUIRY.name}</td>
                     </tr>
                     <tr>
+                        <th class="active" >소속</th>
+                        <td class="form-inline">${INQUIRY.company}</td>
+                    </tr>
+                    <tr>
+                        <th class="active" >이메일</th>
+                        <td class="form-inline">${INQUIRY.email}</td>
+                    </tr>
+                    <tr>
+                        <th class="active" >핸드폰번호</th>
+                        <td class="form-inline">${INQUIRY.phone}</td>
+                    </tr>
+
+                    <tr>
                         <th class="active">제목</th>
-                        <td>${title}</td>
+                        <td class="form-inline">${INQUIRY.title}</td>
+                    </tr>
+                    <tr>
+                        <th class="active">작성일</th>
+                        <td class="form-inline">${INQUIRY.regDt}</td>
                     </tr>
                     <tr>
                         <th class="active">내용</th>
-                        <td>${content}</td>
+                        <td><div>${INQUIRY.contents}</div></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
             <!-- 댓글 목록 출력 테이블 -->
-            <c:if test="${not empty replyList}">
+            <c:if test="${not empty INQUIRY.replies}">
                 <div class="table-responsive mt-4">
                     <table class="table table-bordered">
                         <thead>
@@ -55,14 +72,14 @@
                         </thead>
                         <tbody>
                             <!-- replyList에 댓글 데이터가 담겨있다고 가정 -->
-                            <c:forEach var="inquiryReply" items="${replyList}" varStatus="vs">
+                            <c:forEach var="inquiryReply" items="${INQUIRY.replies}" varStatus="vs">
                                 <tr>
                                     <td>${vs.index+1}</td>
                                     <td>${inquiryReply.contents}</td>
                                     <td>${inquiryReply.writer}</td>
                                     <td>${inquiryReply.regDt}</td>
                                     <td>
-                                        <button type="button" onclick="deleteReply(${inquiryReply.replyNo}, ${inquiryNo});" class="btn btn-danger btn-sm">삭제</button>
+                                        <button type="button" onclick="deleteReply(${inquiryReply.replyNo}, ${INQUIRY.inquiryNo});" class="btn btn-danger btn-sm">삭제</button>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -85,8 +102,8 @@
     </div>
 
     <form id="form" name="form" action="/inquiry/reply" method="post">
-        <input type="hidden" id="regAdminNo" name="regAdminNo" value="${regAdminNo}">
-        <input type="hidden" id="inquiryNo" name="inquiryNo" value="${inquiryNo}">
+        <input type="hidden" id="writer" name="writer" value="${REG_ADMIN_NO}">
+        <input type="hidden" id="inquiryNo" name="inquiryNo" value="${INQUIRY.inquiryNo}">
         <input type="hidden" id="contents" name="contents">
     </form>
 </div>
@@ -101,7 +118,8 @@
             }
 
             $("#contents").val($("#reply").val());
-            document.form.submit();
+            var form = document.getElementById("form");
+            form.submit();
 
         } catch (e) {}
     }

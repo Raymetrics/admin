@@ -8,8 +8,10 @@ import com.raymetrics.admin.web.model.InquiryResDTO;
 import com.raymetrics.admin.web.model.NewsReqDTO;
 import com.raymetrics.admin.web.service.InquiryService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,11 +35,30 @@ public class InquiryController {
      * 문의글 조회 api
      */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public String inquiry(@RequestParam HashMap<String, Object> paramMap,
-                          ModelMap model,
+    public String inquiry(@RequestParam HashMap<String, Object> param,
+                          Model model,
                           HttpServletResponse response) throws Exception{
 
-        model.addAttribute("INQUIRY_LIST", inquiryService.getList());
+        //리스트불러오기
+        Page<InquiryResDTO> inquiryList = inquiryService.getList(param,10);
+
+        int pageBlock = 10;
+        int page = inquiryList.getNumber()+1;
+
+        // 현재 페이지 블록
+        int currentBlock = (int) Math.ceil((double) page / pageBlock);
+
+        // 페이지 블록 시작 페이지
+        int startPage = (currentBlock - 1) * pageBlock + 1;
+
+        // 페이지 블록 끝 페이지
+        int endPage = Math.min(startPage + pageBlock - 1, inquiryList.getTotalPages());
+        endPage = Math.max(endPage, 1);
+
+        model.addAttribute("INQUIRY_LIST", inquiryList);
+        model.addAttribute("START_PAGE", startPage);
+        model.addAttribute("END_PAGE", endPage);
+
         return "/main/inquiry/inquiryBoard";
     }
 
@@ -77,7 +98,7 @@ public class InquiryController {
      * 문의글 상세 조회 api
      */
     @RequestMapping(value = "/detail/{id}", method = RequestMethod.GET)
-    public String inquiryDetail(@PathVariable("id") int id, ModelMap model) throws Exception{
+    public String inquiryDetail(@PathVariable("id") int id, ModelMap model, Model model2) throws Exception{
 
         InquiryResDTO inquiryResDTO = inquiryService.getOne(id);
         if(inquiryResDTO!=null){
@@ -85,6 +106,8 @@ public class InquiryController {
             model.put("title", inquiryResDTO.getTitle());
             model.put("content", inquiryResDTO.getContents());
             model.put("replyList", inquiryResDTO.getReplies());
+            model2.addAttribute("INQUIRY", inquiryResDTO);
+            model2.addAttribute("REG_ADMIN_NO","1");
         }
         return "/main/inquiry/inquiryDetail";
     }
@@ -95,7 +118,7 @@ public class InquiryController {
      * @return
      * 댓글등록 api
      */
-    @PostMapping("/reply")
+    @RequestMapping(value = "/reply", method = RequestMethod.POST)
     public String reply(@RequestParam HashMap<String, Object> paramMap){
         try{
             inquiryService.reply(paramMap);
