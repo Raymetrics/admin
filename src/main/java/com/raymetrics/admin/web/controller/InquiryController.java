@@ -84,7 +84,6 @@ public class InquiryController {
             model.put("inquiryNo", inquiryResDTO.getInquiryNo());
             model.put("title", inquiryResDTO.getTitle());
             model.put("content", inquiryResDTO.getContents());
-            model.put("writer", inquiryResDTO.getWriter());
             model.put("replyList", inquiryResDTO.getReplies());
         }
         return "/main/inquiry/inquiryDetail";

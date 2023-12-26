@@ -1,6 +1,5 @@
 package com.raymetrics.admin.web.entity;
 
-import com.raymetrics.admin.web.common.entity.AuditingAt;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,7 +8,6 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.HashMap;
-import java.util.Optional;
 
 @Entity
 @Getter

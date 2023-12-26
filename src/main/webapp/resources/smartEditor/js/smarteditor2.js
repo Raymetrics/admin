@@ -1,7 +1,7 @@
 /**
  * SmartEditor2 NAVER_Library:SE2.8.2.O4259f59
  * Copyright NAVER Corp. Licensed under LGPL v2
- * See license text at http://dev.naver.com/projects/smarteditor/wiki/LICENSE
+ * See license text at http://dev.naver.com/projects/smartEditor/wiki/LICENSE
  */
 if(typeof window.nhn=='undefined'){window.nhn = {};}
 if (!nhn.husky){nhn.husky = {};}

@@ -46,7 +46,7 @@ public class InquiryService {
                         inquiryReply -> inquiryReply.setWriter("reply글쓴이")
                 );
             }
-            result.add(InquiryResDTO.of(inquiry,"inquiry글쓴이"));
+            result.add(InquiryResDTO.of(inquiry));
         });
         return inquiryList;
     }
@@ -55,7 +55,7 @@ public class InquiryService {
     public InquiryResDTO getOne(int id){
         Optional<Inquiry> inquiry = inquiryRepository.findById(id);
         if(inquiry.isPresent()){
-            return InquiryResDTO.of(inquiry.get(),"inquiry글쓴이");
+            return InquiryResDTO.of(inquiry.get());
         }else {
             return null;
         }

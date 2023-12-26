@@ -8,7 +8,7 @@
 <%@include file="../../includes/header.jsp"%>
 <!-- 에디터 플러그인 -->
 
-<script type="text/javascript" src="/resources/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+<script type="text/javascript" src="/resources/smartEditor/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
 
@@ -85,7 +85,7 @@
         </div>
     </div>
 </div>
-<%--<form action="/resources/smarteditor/sample/viewer/index.php" method="post">--%>
+<%--<form action="/resources/smartEditor/sample/viewer/index.php" method="post">--%>
 <%--    <textarea name="smartEditor" id="smartEditor" rows="10" cols="100" style="width:766px; height:412px; display:none;"></textarea>--%>
 <%--    <!--textarea name="smartEditor" id="smartEditor" rows="10" cols="100" style="width:100%; height:412px; min-width:610px; display:none;"></textarea-->--%>
 <%--    <p>--%>
@@ -96,7 +96,7 @@
 <%--    </p>--%>
 <%--</form>--%>
 
-<script type="text/javascript" src="/resources/smarteditor/js/HuskyEZCreator.js" charset="utf-8"></script>
+<script type="text/javascript" src="/resources/smartEditor/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
     var oEditors = [];
@@ -107,7 +107,7 @@
     nhn.husky.EZCreator.createInIFrame({
         oAppRef: oEditors,
         elPlaceHolder: "smartEditor",
-        sSkinURI: "/resources/smarteditor/SmartEditor2Skin.html",
+        sSkinURI: "/resources/smartEditor/SmartEditor2Skin.html",
         htParams : {
             bUseToolbar : true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
             bUseVerticalResizer : true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)

@@ -16,7 +16,7 @@
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">No : ${id}</h6>
+            <h6 class="m-0 font-weight-bold text-primary">No : ${NEWS.newsNo}</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive" style="text-align:center;">
@@ -29,20 +29,28 @@
                     </colgroup>
                     <tbody>
                     <tr>
-                        <th class="active" >제목</th>
-                        <td class="form-inline">${title} </td>
+                        <th class="active" >작성자</th>
+                        <td class="form-inline">${NEWS.regAdminNo} </td>
                     </tr>
                     <tr>
-                        <th class="active">내용</th>
-                        <td class="form-inline"><textarea
-                                id="newsContent" name="newsContent" cols="100" rows="10"
-                                class="form-control" readonly>${content}</textarea> </td>
+                        <th class="active">작성일</th>
+                        <td class="form-inline">${NEWS.regDt} </td>
                     </tr>
-
+                    <tr>
+                        <th class="active" >제목</th>
+                        <td class="form-inline">${NEWS.title} </td>
+                    </tr>
+                    <tr>
+                        <th class="active" colspan="2">
+                            <div>
+                                ${NEWS.contents}
+                            </div>
+                        </th>
+                    </tr>
                     </tbody>
                 </table>
                 <div style="margin-right:50px; float: right;">
-                    <button type="submit" onclick="location.href='/news/edit/${id}'" class="btn btn-primary">수정</button>
+                    <button type="submit" onclick="location.href='/news/edit/${NEWS.newsNo}'" class="btn btn-primary">수정</button>
                     <a href="/news/list" class="btn btn-danger">취소</a>
                 </div>
             </div>
