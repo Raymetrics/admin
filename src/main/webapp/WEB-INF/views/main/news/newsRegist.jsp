@@ -127,6 +127,9 @@
             try {
                 // 폼을 직접 찾아서 제출
                 var form = document.getElementById("form");
+                // 버튼 비활성화
+                elClickedObj.disabled = true;
+
                 form.submit();
             } catch(e) {
                 console.error("Error submitting form:", e);
