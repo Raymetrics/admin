@@ -30,7 +30,7 @@
                     <tbody>
                     <tr>
                         <th class="active" >작성자</th>
-                        <td class="form-inline">${NEWS.regAdminNo} </td>
+                        <td class="form-inline">${NEWS.regAdminName} </td>
                     </tr>
                     <tr>
                         <th class="active">작성일</th>

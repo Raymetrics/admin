@@ -39,8 +39,8 @@
                             </tr>
                             <tr>
                                 <th class="active" >작성자</th>
-                                <td class="form-inline"><input type="text" id="regAdminNo"
-                                                               name="regAdminNo" class="form-control" style="width: 200px" value="${NEWS.regAdminNo}" />
+                                <td class="form-inline"><input type="text" id="regAdminName"
+                                                               name="regAdminName" class="form-control" style="width: 200px" value="${NEWS.regAdminNo}" />
                                 </td>
                             </tr>
                             <tr>
@@ -142,15 +142,15 @@
     }
 
     function validateForm() {
-        var regAdminNo = document.getElementById('regAdminNo').value;
+        var regAdminName = document.getElementById('regAdminName').value;
         var title = document.getElementById('title').value;
         var content = document.getElementById('smartEditor').value;
 
 
         // 이름과 제목은 비어있지 않아야 합니다.
-        if (regAdminNo.trim() === '') {
+        if (regAdminName.trim() === '') {
             alert('작성자를 입력하세요.');
-            regAdminNo.focus();
+            regAdminName.focus();
             return false;
         }
 

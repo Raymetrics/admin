@@ -101,7 +101,7 @@
                                             <tr class="list-div" onclick="goDetail(${list.newsNo})">
                                                 <td>${list.newsNo}</td>
                                                 <td>${list.title}</td>
-                                                <td>${list.regAdminNo}</td>
+                                                <td>${list.regAdminName}</td>
                                                 <td>${list.regDt}</td>
                                             </tr>
                                         </c:forEach>

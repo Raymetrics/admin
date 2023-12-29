@@ -79,7 +79,7 @@ public class NewsController {
     @PostMapping("/news")
     public String saveNews(@RequestParam HashMap<String, Object> paramMap) throws IOException {
         News news = newsService.regist(paramMap);
-        fileUploadService.uploadImgToCloud(news);
+        //fileUploadService.uploadImgToCloud(news);
         return "redirect:/news/list";
     }
 
