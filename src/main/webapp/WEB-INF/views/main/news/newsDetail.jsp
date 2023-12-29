@@ -41,11 +41,11 @@
                         <td class="form-inline">${NEWS.title} </td>
                     </tr>
                     <tr>
-                        <th class="active" colspan="2">
+                        <td class="active" colspan="2">
                             <div>
                                 ${NEWS.contents}
                             </div>
-                        </th>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
