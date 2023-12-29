@@ -123,12 +123,12 @@
                     </table>
                 </div>
                 <div class="my-2"></div>
-                <a href="/inquiry/regist" class="btn btn-secondary btn-icon-split">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-arrow-right"></i>
-                            </span>
-                    <span class="text">글쓰기</span>
-                </a>
+<%--                <a href="/inquiry/regist" class="btn btn-secondary btn-icon-split">--%>
+<%--                            <span class="icon text-white-50">--%>
+<%--                                <i class="fas fa-arrow-right"></i>--%>
+<%--                            </span>--%>
+<%--                    <span class="text">글쓰기</span>--%>
+<%--                </a>--%>
 
                 <div id="wrapper">
                     <div class="b-pagination-outer">
