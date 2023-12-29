@@ -19,7 +19,7 @@
             <h6 class="m-0 font-weight-bold text-primary">No : ${NEWS.newsNo}</h6>
         </div>
         <div class="card-body">
-            <div class="table-responsive" style="text-align:center;">
+            <div class="table-responsive">
                 <table id="datatable-scroller"
                        class="table table-bordered tbl_Form">
                     <caption></caption>
@@ -29,15 +29,15 @@
                     </colgroup>
                     <tbody>
                     <tr>
-                        <th class="active" >작성자</th>
+                        <th class="active"  style="text-align:center;">작성자</th>
                         <td class="form-inline">${NEWS.regAdminName} </td>
                     </tr>
                     <tr>
-                        <th class="active">작성일</th>
+                        <th class="active" style="text-align:center;">작성일</th>
                         <td class="form-inline">${NEWS.regDt} </td>
                     </tr>
                     <tr>
-                        <th class="active" >제목</th>
+                        <th class="active"  style="text-align:center;">제목</th>
                         <td class="form-inline">${NEWS.title} </td>
                     </tr>
                     <tr>

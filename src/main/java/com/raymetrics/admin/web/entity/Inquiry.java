@@ -65,4 +65,9 @@ public class Inquiry extends AuditingAt {
         this.contents = contents;
         return this;
     }
+
+
+    public void sortReplies(List<InquiryReply> replies){
+        this.replies = replies;
+    }
 }

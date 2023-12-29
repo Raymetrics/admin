@@ -56,6 +56,13 @@ public class InquiryService {
     public InquiryResDTO getOne(int id){
         Optional<Inquiry> inquiry = inquiryRepository.findById(id);
         if(inquiry.isPresent()){
+            if(!inquiry.get().getReplies().isEmpty()){
+                List<InquiryReply> sortedReplies = inquiry.get().getReplies().stream()
+                        .sorted(Comparator.comparingInt(InquiryReply::getReplyNo).reversed())
+                        .collect(Collectors.toList());
+                inquiry.get().sortReplies(sortedReplies);
+            }
+
             return InquiryResDTO.of(inquiry.get());
         }else {
             return null;

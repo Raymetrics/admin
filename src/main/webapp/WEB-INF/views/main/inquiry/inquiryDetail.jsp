@@ -58,43 +58,29 @@
                 </table>
             </div>
             <!-- 댓글 목록 출력 테이블 -->
-            <c:if test="${not empty INQUIRY.replies}">
-                <div class="table-responsive mt-4">
-                    <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                            <th style="width: 5%;">no</th>
-                            <th style="width: 50%;">내용</th>
-                            <th>작성자</th>
-                            <th>작성 일시</th>
-                            <th>삭제</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <!-- replyList에 댓글 데이터가 담겨있다고 가정 -->
-                            <c:forEach var="inquiryReply" items="${INQUIRY.replies}" varStatus="vs">
-                                <tr>
-                                    <td>${vs.index+1}</td>
-                                    <td>${inquiryReply.contents}</td>
-                                    <td>${inquiryReply.writer}</td>
-                                    <td>${inquiryReply.regDt}</td>
-                                    <td>
-                                        <button type="button" onclick="deleteReply(${inquiryReply.replyNo}, ${INQUIRY.inquiryNo});" class="btn btn-danger btn-sm">삭제</button>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>
-                </div>
-            </c:if>
-
-            <div class="mt-4">
+            <div style="margin-top: 5em;">
                 <div class="input-group">
                     <input type="text" id="reply" name="reply" cols="100" rows="1" class="form-control" placeholder="댓글을 입력해주세요."></input>
                     <div class="input-group-append">
                         <button type="button" onclick="submitReply();" class="btn btn-primary">댓글 등록</button>
                     </div>
                 </div>
+
+
+                <c:if test="${not empty INQUIRY.replies}">
+
+                    <!-- replyList에 댓글 데이터가 담겨있다고 가정 -->
+                    <c:forEach var="inquiryReply" items="${INQUIRY.replies}" varStatus="vs">
+                        <div style="margin-top: 2em; position: relative;">
+                            <b>${inquiryReply.writer}</b> | ${inquiryReply.regDt} <br>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span>${inquiryReply.contents}</span>
+                                <button type="button" onclick="deleteReply(${inquiryReply.replyNo}, ${INQUIRY.inquiryNo});" class="btn btn-danger btn-sm">삭제</button>
+                            </div>
+                            <hr>
+                        </div>
+                    </c:forEach>
+                </c:if>
             </div>
 
 

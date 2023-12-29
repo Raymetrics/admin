@@ -135,15 +135,15 @@
     }
 
     function validateForm() {
-        var name = document.getElementById('name').value;
+        var regAdminName = document.getElementById('regAdminName').value;
         var title = document.getElementById('title').value;
         var content = document.getElementById('smartEditor').value;
 
 
         // 이름과 제목은 비어있지 않아야 합니다.
-        if (name.trim() === '') {
+        if (regAdminName.trim() === '') {
             alert('작성자를 입력하세요.');
-            name.focus();
+            regAdminName.focus();
             return false;
         }
 

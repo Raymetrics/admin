@@ -161,9 +161,6 @@
 <%@include file="../../includes/footer.jsp"%>
 
 <script type="text/javascript">
-    var inquiryData = ${INQUIRY_LIST};
-    console.log(inquiryData);
-
 
     function goDetail(no){
         var pageUrl='/inquiry/detail/'+no;
