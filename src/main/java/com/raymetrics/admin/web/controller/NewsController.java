@@ -26,7 +26,7 @@ public class NewsController {
     @RequestMapping(value= "/news/list", method = RequestMethod.GET)
     public String news(@RequestParam Map<String,Object> param, Model model) {
 
-        Page<NewsResDTO> newsList = newsService.getList(param,2);
+        Page<NewsResDTO> newsList = newsService.getList(param,10);
 
         int pageBlock = 10;
         int page = newsList.getNumber()+1;
@@ -79,7 +79,7 @@ public class NewsController {
     @PostMapping("/news")
     public String saveNews(@RequestParam HashMap<String, Object> paramMap) throws IOException {
         News news = newsService.regist(paramMap);
-        //fileUploadService.uploadImgToCloud(news);
+        fileUploadService.uploadImgToCloud(news);
         return "redirect:/news/list";
     }
 

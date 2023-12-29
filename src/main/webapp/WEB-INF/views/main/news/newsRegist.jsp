@@ -33,7 +33,7 @@
                             <tbody>
                             <tr>
                                 <th class="active" >작성자</th>
-                                <td class="form-inline"><input type="text" id="name"
+                                <td class="form-inline"><input type="text" id="regAdminName"
                                                                name="regAdminName" class="form-control" style="width: 200px" value="관리자" />
                                 </td>
                             </tr>

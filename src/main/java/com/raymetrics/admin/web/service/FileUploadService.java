@@ -119,28 +119,31 @@ public class FileUploadService {
         for(Element imgElement:imgElements){
             String src = imgElement.attr("src");
 
-            // 파일 경로 문자열을 Path 객체로 변환
-            Path path = Paths.get(src);
+            //서버에 업로드 한 이미지만 클라우드로 옮긴다.
+            if(src.contains("/resources/uploadImg/")){
+                // 파일 경로 문자열을 Path 객체로 변환
+                Path path = Paths.get(src);
 
-            // 파일 이름을 가져옴
-            String fileName = path.getFileName().toString();
+                // 파일 이름을 가져옴
+                String fileName = path.getFileName().toString();
 
-            // 파일 MIME를 추출
-            String contentType = Files.probeContentType(path);
+                // 파일 MIME를 추출
+                String contentType = Files.probeContentType(path);
 
-            //파일경로
-            String filePath = resourceLoader.getResource(src).getFile().getPath();
-            Bucket bucket = StorageClient.getInstance().bucket("raymetrics-57ba9.appspot.com");
-            InputStream fileContent = new FileInputStream(filePath);
-            Blob blob = bucket.create(fileName, fileContent, contentType);
+                //파일경로
+                String filePath = resourceLoader.getResource(src).getFile().getPath();
+                Bucket bucket = StorageClient.getInstance().bucket("raymetrics-57ba9.appspot.com");
+                InputStream fileContent = new FileInputStream(filePath);
+                Blob blob = bucket.create(fileName, fileContent, contentType);
 
-            // 새로운 URL 생성
-            String newUrl = String.valueOf(blob.signUrl(36500, TimeUnit.DAYS));
-            // imgElement의 src 속성을 새 URL로 업데이트
-            imgElement.attr("src", newUrl);
+                // 새로운 URL 생성
+                String newUrl = String.valueOf(blob.signUrl(36500, TimeUnit.DAYS));
+                // imgElement의 src 속성을 새 URL로 업데이트
+                imgElement.attr("src", newUrl);
 
-            //해당파일 로컬에서 삭제
-//            fileDelete(filePath);
+                //해당파일 로컬에서 삭제
+                fileDelete(filePath);
+            }
         }
 
 
